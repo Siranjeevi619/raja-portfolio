@@ -1,11 +1,12 @@
 import React from 'react';
 import { Download, Code, Database, Terminal, ShieldAlert } from 'lucide-react';
 
-interface HeroProps {
-  setView: (view: string) => void;
-}
+const scrollTo = (id: string) => {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
 
-export const Hero: React.FC<HeroProps> = ({ setView }) => (
+export const Hero: React.FC = () => (
   <section>
     {/* ── Hero ── */}
     <div className="hero">
@@ -21,7 +22,7 @@ export const Hero: React.FC<HeroProps> = ({ setView }) => (
           <strong>B.Tech Information Technology Graduate</strong> and aspiring Full-Stack
           Software Engineer. I design reliable backends, structure databases, and build
           responsive interfaces using <strong>Python</strong>, <strong>Java</strong>,{' '}
-          <strong>SQL</strong>, and <strong>React&nbsp;+&nbsp;TypeScript</strong>.
+          <strong>SQL</strong> and <strong>React&nbsp;+&nbsp;TypeScript</strong>.
         </p>
 
         <div className="hero-ctas">
@@ -29,7 +30,7 @@ export const Hero: React.FC<HeroProps> = ({ setView }) => (
             <Download size={16} />
             Download CV
           </a>
-          <button className="btn-ghost" onClick={() => setView('experience')}>
+          <button className="btn-ghost" onClick={() => scrollTo('experience')}>
             See experience →
           </button>
         </div>
@@ -53,9 +54,7 @@ export const Hero: React.FC<HeroProps> = ({ setView }) => (
     {/* ── Foundation Cards ── */}
     <div style={{ marginTop: 'var(--space-32)' }}>
       <div className="section-header">
-        <p className="section-eyebrow">
-          Core Stack
-        </p>
+        <p className="section-eyebrow">Core Stack</p>
         <h2 className="section-title">Built on solid foundations</h2>
         <p className="section-subtitle">
           Key ecosystems and paradigms I rely on when engineering production software.
@@ -68,28 +67,28 @@ export const Hero: React.FC<HeroProps> = ({ setView }) => (
             icon: <Code size={22} />,
             title: 'Python Ecosystem',
             desc: 'Microservices, REST APIs, and automation pipelines using FastAPI and Django.',
-            view: 'projects',
+            target: 'projects',
           },
           {
             icon: <Terminal size={22} />,
             title: 'Java & OOP',
             desc: 'Applying object-oriented design patterns, core DSA, and clean architecture.',
-            view: 'projects',
+            target: 'skills',
           },
           {
             icon: <Database size={22} />,
             title: 'DBMS & SQL',
             desc: 'Schema design, transaction safety, and query optimisation with MySQL and PostgreSQL.',
-            view: 'projects',
+            target: 'skills',
           },
           {
             icon: <ShieldAlert size={22} />,
             title: 'Full-Stack Web',
             desc: 'Assembling UIs with React, TypeScript, and modern responsive styling systems.',
-            view: 'projects',
+            target: 'projects',
           },
-        ].map(({ icon, title, desc, view }) => (
-          <div key={title} className="highlight-card" onClick={() => setView(view)}>
+        ].map(({ icon, title, desc, target }) => (
+          <div key={title} className="highlight-card" onClick={() => scrollTo(target)}>
             <div className="highlight-icon">{icon}</div>
             <div>
               <h3 className="highlight-title">{title}</h3>
